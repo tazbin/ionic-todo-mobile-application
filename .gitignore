@@ -1,0 +1,13 @@
+application/idea
+application/ionic
+application/sass-cache
+application/sourcemaps
+application/versions
+application/vscode
+application/coverage
+application/dist
+application/node_modules
+api/node_modules
+application/platforms
+application/plugins
+application/www
