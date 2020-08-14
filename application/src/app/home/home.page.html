@@ -1,20 +1,54 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+    <div class="header">
+        <img src="assets/imges/bg5.jpg" id="overlay" alt="">
+        <div class="textBx">
+            <h1>
+                Todo Lists
+            </h1>
+            <h4>
+                Friday, 5:16 PM
+            </h4>
+        </div>
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+            <ion-fab-button color="light">
+                <ion-icon name="add"></ion-icon>
+            </ion-fab-button>
+        </ion-fab>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <!-- my todo lists -->
+    <ion-list>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>
+                    <span>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus iusto soluta incidunt consequatur ullam pariatur fuga consectetur quidem!
+                    </span>
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-card-title>
+                <ion-card-subtitle>
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    A few seconds ago
+                </ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>
+                    <span>
+                      Learn Ionic within today
+                  </span>
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-card-title>
+                <ion-card-subtitle>
+                    <ion-icon name="calendar-outline"></ion-icon>
+                    A few seconds ago
+                </ion-card-subtitle>
+            </ion-card-header>
+        </ion-card>
+
+    </ion-list>
+
+    <!-- my todo lists -->
 </ion-content>
