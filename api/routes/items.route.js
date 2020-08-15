@@ -6,7 +6,8 @@ const route = express.Router()
 
 // get all todo lists
 route.get('/getTodos', (req, res, next) => {
-    itemModel.find()
+    itemModel.find().
+    sort({ _id: -1 })
         .select('itemName noteTime status')
         .exec()
         .then(result => {

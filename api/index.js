@@ -1,11 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const itemsRoute = require('./routes/items.route')
 
 const app = express()
 const port = 3000
+app.use(cors())
 app.use(bodyParser.json())
 
 // database connection

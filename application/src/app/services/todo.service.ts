@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -41,21 +42,55 @@ export class TodoService {
 
   todoItems$ = new BehaviorSubject(null);
 
-  constructor() {
-    this.todoItems$.next(this.todoItemsArray);
+  constructor(
+    private _http: HttpClient
+  ) {
+
+    // getting server data
+    // this.todoItems$.next(this.todoItemsArray);
+    this.getAllTodoItems()
+    .subscribe( res => {
+      this.todoItems$.next(res);
+    })
+  }
+
+  getAllTodoItems(){
+    return this._http.get('http://127.0.0.1:3000/api/getTodos');
   }
 
   deleteItemConfirm(itemIndex: number){
-    this.todoItemsArray.splice(itemIndex, 1);
-    this.todoItems$.next(this.todoItemsArray);
+    // this.todoItemsArray.splice(itemIndex, 1);
+    // this.todoItems$.next(this.todoItemsArray);
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      body: {
+        itemId: itemIndex
+      }
+    }
+    this._http.delete('http://127.0.0.1:3000/api/deleteItem', options)
+    .subscribe(res => {
+      this.getAllTodoItems()
+    .subscribe( res => {
+      this.todoItems$.next(res);
+    })
+    })
   }
 
   addNewItem(item: any){
-    item._id = this.todoItemsArray.length + 1;
     item.status = true;
     var stringDate = (new Date(item.noteTime)).toString().split(' ');
     item.noteTime = stringDate[2]+' '+stringDate[1]+', '+stringDate[3];
-    this.todoItemsArray.unshift(item);
-    this.todoItems$.next(this.todoItemsArray);
+
+    this._http.post('http://127.0.0.1:3000/api/createTodo', {
+      itemName: item.itemName,
+            noteTime: item.noteTime
+    }).subscribe(res => {
+      this.getAllTodoItems()
+    .subscribe( res => {
+      this.todoItems$.next(res);
+    })
+    })
   }
 }
